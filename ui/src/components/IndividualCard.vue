@@ -1,6 +1,8 @@
 <template>
   <v-card
-    class="mx-auto"
+    class="mx-auto mx-3"
+    color="#003756"
+     outlined
     :class="{
       locked: isLocked,
       dropzone: isDragging,
@@ -16,14 +18,14 @@
     @click="selectIndividual"
   >
     <v-list-item class="grow" three-line>
-      <avatar :name="name" :email="email" :size="30" />
 
       <v-list-item-content>
-        <v-list-item-title class="font-weight-medium">
+      <v-card-text class="pa-0 mb-0"> <avatar :name="name" :email="email" :size="30" /></v-card-text>
+        <v-list-item-title class="font-weight-medium py-2 white--text">
           {{ name || email }}
           <v-icon v-if="isLocked" small right class="mb-1">mdi-lock</v-icon>
         </v-list-item-title>
-        <v-list-item-subtitle v-if="enrollments && enrollments.length > 0">
+        <v-list-item-subtitle class="text-xs white--text" v-if="enrollments && enrollments.length > 0">
           {{ enrollments[0].organization.name }}
         </v-list-item-subtitle>
         <v-list-item-subtitle>
@@ -35,7 +37,7 @@
             open-delay="300"
           >
             <template v-slot:activator="{ on }">
-              <v-icon v-on="on" v-text="source.icon" small left />
+              <v-icon v-on="on" class="white--text" v-text="source.icon" small left />
             </template>
             <span>{{ source.name }}</span>
           </v-tooltip>
@@ -46,7 +48,7 @@
         <v-menu offset-y offset-x :close-on-content-click="false">
           <template v-slot:activator="{ on }">
             <v-btn icon v-on="on" @mousedown.stop>
-              <v-icon small>
+              <v-icon class="white--text"  small>
                 mdi-magnify-plus-outline
               </v-icon>
             </v-btn>
@@ -59,7 +61,7 @@
           />
         </v-menu>
         <v-btn text icon @click.stop="$emit('remove')" @mousedown.stop>
-          <v-icon small>
+          <v-icon class="white--text" small>
             mdi-close
           </v-icon>
         </v-btn>
